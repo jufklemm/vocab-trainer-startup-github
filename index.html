@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup & GitHub Vocab Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e12;
+    --surface: #17171e;
+    --card-front: #1e1e28;
+    --card-back: #1a2435;
+    --accent: #4af0c4;
+    --accent2: #f06c4a;
+    --accent3: #c44af0;
+    --text: #e8e6f0;
+    --muted: #6b6880;
+    --border: #2a2a38;
+    --startup: #f06c4a;
+    --github: #4af0c4;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 4rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(ellipse, rgba(74,240,196,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--text) 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    margin-top: 0.6rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tab {
+    padding: 0.45rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    background: var(--surface);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .tab:hover { color: var(--text); border-color: var(--muted); }
+  .tab.active-startup { background: rgba(240,108,74,0.15); border-color: var(--startup); color: var(--startup); }
+  .tab.active-github { background: rgba(74,240,196,0.12); border-color: var(--github); color: var(--github); }
+  .tab.active-all { background: rgba(196,74,240,0.12); border-color: var(--accent3); color: var(--accent3); }
+
+  .progress-wrap {
+    width: 100%;
+    max-width: 520px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+
+  .card-stage {
+    perspective: 1200px;
+    width: 100%;
+    max-width: 520px;
+    height: 300px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.8rem;
+    cursor: pointer;
+  }
+
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-stage.flipped .card-inner { transform: rotateY(180deg); }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .card-front { background: var(--card-front); }
+  .card-back { background: var(--card-back); transform: rotateY(180deg); }
+
+  .card-category {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 99px;
+    border: 1px solid;
+  }
+
+  .cat-startup { color: var(--startup); border-color: rgba(240,108,74,0.4); background: rgba(240,108,74,0.08); }
+  .cat-github { color: var(--github); border-color: rgba(74,240,196,0.3); background: rgba(74,240,196,0.07); }
+
+  .card-word {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.15;
+    color: var(--text);
+  }
+
+  .card-hint {
+    margin-top: 0.8rem;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .card-hint svg { opacity: 0.5; }
+
+  .card-definition {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    text-align: center;
+    color: var(--text);
+    max-width: 380px;
+  }
+
+  .card-example {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .controls {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .btn:hover { color: var(--text); border-color: var(--muted); transform: translateY(-1px); }
+  .btn-primary { background: rgba(74,240,196,0.1); border-color: var(--accent); color: var(--accent); }
+  .btn-primary:hover { background: rgba(74,240,196,0.2); }
+  .btn-known { background: rgba(74,240,196,0.08); border-color: rgba(74,240,196,0.3); color: var(--accent); font-size: 0.7rem; }
+  .btn-skip { background: rgba(240,108,74,0.08); border-color: rgba(240,108,74,0.3); color: var(--startup); font-size: 0.7rem; }
+  .btn-known:hover { background: rgba(74,240,196,0.18); transform: translateY(-1px); }
+  .btn-skip:hover { background: rgba(240,108,74,0.18); transform: translateY(-1px); }
+
+  .word-list-section {
+    width: 100%;
+    max-width: 520px;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .word-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .word-chip {
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.4rem;
+    font-size: 0.68rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--muted);
+  }
+
+  .word-chip:hover { color: var(--text); border-color: var(--muted); }
+  .word-chip.known { border-color: rgba(74,240,196,0.3); color: var(--accent); }
+  .word-chip.known::before { content: '✓ '; opacity: 0.7; }
+  .word-chip.startup-chip { border-left: 2px solid var(--startup); }
+  .word-chip.github-chip { border-left: 2px solid var(--github); }
+
+  @media (max-width: 480px) {
+    .card-stage { height: 280px; }
+    .card-definition { font-size: 0.78rem; }
+    .card-word { font-size: 1.5rem; }
+  }
+
+  .card-stage { user-select: none; }
+
+  .done-state { text-align: center; padding: 2rem; }
+  .done-state .big { font-family: 'Fraunces', serif; font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .done-state .sub { color: var(--muted); font-size: 0.75rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">// Lernkarten</div>
+  <h1>Startup & GitHub<br>Vocabulary</h1>
+  <div class="subtitle">Klick auf die Karte &rarr; Definition sehen</div>
+</header>
+
+<div class="tabs">
+  <button class="tab active-all" onclick="setCategory('all')">Alle</button>
+  <button class="tab" onclick="setCategory('startup')">&#x1F680; Startup</button>
+  <button class="tab" onclick="setCategory('github')">&#x2325; GitHub</button>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-info">
+    <span id="progress-text">0 von 0 bekannt</span>
+    <span id="card-counter">Karte 1/1</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+</div>
+
+<div class="card-stage" id="card" onclick="flipCard()">
+  <div class="card-inner" id="card-inner">
+    <div class="card-face card-front" id="front">
+      <div class="card-category" id="front-cat"></div>
+      <div class="card-word" id="front-word"></div>
+      <div class="card-hint">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2H3v16h5l4 4 4-4h5V2z"/></svg>
+        antippen zum Aufdecken
+      </div>
+    </div>
+    <div class="card-face card-back" id="back">
+      <div class="card-category" id="back-cat"></div>
+      <div class="card-definition" id="back-def"></div>
+      <div class="card-example" id="back-ex"></div>
+    </div>
+  </div>
+</div>
+
+<div class="controls" id="controls">
+  <button class="btn btn-skip" onclick="markSkip()">&#x21A9; Nochmal</button>
+  <button class="btn btn-primary" onclick="flipCard()">Umdrehen</button>
+  <button class="btn btn-known" onclick="markKnown()">Bekannt &#x2713;</button>
+</div>
+
+<div class="word-list-section">
+  <div class="section-title">Alle Begriffe</div>
+  <div class="word-grid" id="word-grid"></div>
+</div>
+
+<script>
+const vocab = [
+  { cat: 'startup', word: 'MVP', def: 'Minimum Viable Product – die kleinstmögliche Version eines Produkts, die echte Nutzer testen können. Ziel: schnell lernen, ohne viel zu bauen.', ex: '„Wir launchen erst den MVP, dann iterieren wir basierend auf Feedback.“' },
+  { cat: 'startup', word: 'Product-Market Fit', def: 'Der Moment, wenn dein Produkt ein echtes Problem einer echten Zielgruppe löst – messbar daran, dass Nutzer es wirklich wollen und nutzen.', ex: '„Retention-Kurven flachen ab → noch kein Product-Market Fit.“' },
+  { cat: 'startup', word: 'Pivot', def: 'Eine strategische Kursänderung des Geschäftsmodells oder Produkts, ohne die gesamte Firma neu zu gründen.', ex: '„Slack begann als Spielefirma – der Pivot zum Chat-Tool rettete sie.“' },
+  { cat: 'startup', word: 'Runway', def: 'Wie viele Monate ein Startup mit dem aktuellen Kapital überleben kann, wenn keine neuen Einnahmen reinkommen.', ex: '„Wir haben 18 Monate Runway – danach brauchen wir Series A.“' },
+  { cat: 'startup', word: 'Burn Rate', def: 'Wie schnell ein Startup Geld ausgibt – monatliche Netto-Ausgaben (Kosten minus Einnahmen).', ex: '„Burn Rate: 40k€/Monat. Runway: 12 Monate.“' },
+  { cat: 'startup', word: 'Bootstrapping', def: 'Ein Startup ohne externe Investoren aufbauen – ausschließlich mit eigenem Geld oder Einnahmen finanziert.', ex: '„Basecamp ist seit 20 Jahren gebootstrapped und profitabel.“' },
+  { cat: 'startup', word: 'Seed-Runde', def: 'Die erste formale Finanzierungsrunde – meist von Business Angels oder Seed-Fonds. Typisch: 200k–2M EUR gegen Anteile.', ex: '„Nach dem Seed haben wir unser erstes Team eingestellt.“' },
+  { cat: 'startup', word: 'Series A / B / C', def: 'Wachstumsfinanzierungsrunden nach der Seed-Phase. A = Skalierung des Modells, B = Marktexpansion, C+ = IPO-Vorbereitung oder M&A.', ex: '„Series A von 8M EUR – jetzt bauen wir Sales aus.“' },
+  { cat: 'startup', word: 'Cap Table', def: 'Capitalization Table – Tabelle aller Gesellschafter mit ihren Anteilen, Verwässerungseffekten und Bewertungsrunden.', ex: '„Vor dem Term Sheet immer den Cap Table prüfen.“' },
+  { cat: 'startup', word: 'Valuation / Bewertung', def: 'Was das Startup „wert“ ist – entweder Pre-Money (vor Investition) oder Post-Money (danach). Rein verhandelt, nicht objektiv.', ex: '„Pre-Money Valuation: 5M → bei 1M Investment Post-Money: 6M.“' },
+  { cat: 'startup', word: 'Term Sheet', def: 'Nicht-bindende Zusammenfassung der Investitionskonditionen (Bewertung, Anteile, Vorzugsrechte). Grundlage für den finalen Vertrag.', ex: '„VC hat uns ein Term Sheet geschickt – jetzt Anwalt einschalten.“' },
+  { cat: 'startup', word: 'Vesting', def: 'Anteile werden nicht sofort, sondern über Zeit „verdient“ – typisch 4 Jahre mit 1 Jahr Cliff. Schützt gegen frühen Ausstieg von Gründern.', ex: '„1 Jahr Cliff bedeutet: verlässtst du vorher, bekommst du 0.“' },
+  { cat: 'startup', word: 'Cliff', def: 'Der Zeitpunkt, ab dem das erste Vesting einsetzt – vor dem Cliff bekommt man keine Anteile, danach alle auf einmal.', ex: '„Nach dem 1-Jahres-Cliff: 25% der Anteile sofort, dann monatlich.“' },
+  { cat: 'startup', word: 'Due Diligence', def: 'Sorgfältige Prüfung eines Unternehmens durch Investoren vor Abschluss – Finanzen, Technik, Rechtliches, Team.', ex: '„VC ist in der Due Diligence – brauchen Zugriff auf unsere Verträge.“' },
+  { cat: 'startup', word: 'Traction', def: 'Messbare Beweise, dass das Produkt funktioniert – Nutzer, Umsatz, Wachstum. Das Wichtigste im Pitch.', ex: '„200 zahlende Kunden in 3 Monaten – das ist echte Traction.“' },
+  { cat: 'startup', word: 'KPI', def: 'Key Performance Indicator – die wenigen Metriken, die wirklich zählen. Für SaaS z.B. MRR, Churn, CAC, LTV.', ex: '„Unser North Star KPI: aktive Nutzer pro Woche.“' },
+  { cat: 'startup', word: 'MRR / ARR', def: 'Monthly/Annual Recurring Revenue – monatlicher oder jährlicher wiederkehrender Umsatz. Heilige Zahl im SaaS.', ex: '„Wir haben 50k MRR erreicht – Glückwunsch zum Meilenstein!“' },
+  { cat: 'startup', word: 'Churn', def: 'Wie viele Kunden in einem Zeitraum abwandern – monatlich als Prozentsatz gemessen. Hoher Churn killt jedes SaaS.', ex: '„5% monatlicher Churn = fast alle Kunden in einem Jahr verloren.“' },
+  { cat: 'startup', word: 'CAC', def: 'Customer Acquisition Cost – wie viel kostet es, einen neuen Kunden zu gewinnen (Marketing + Sales geteilt durch neue Kunden).', ex: '„CAC: 200€, LTV: 800€ → gesundes Verhältnis.“' },
+  { cat: 'startup', word: 'LTV', def: 'Lifetime Value – wie viel Umsatz ein Kunde im Schnitt über die gesamte Kundenbeziehung bringt.', ex: '„LTV/CAC-Ratio sollte mindestens 3:1 sein.“' },
+  { cat: 'startup', word: 'Go-to-Market (GTM)', def: 'Die Strategie, wie man ein Produkt zum Kunden bringt – Zielgruppe, Kanäle, Pricing, Sales-Prozess.', ex: '„GTM für Healthcare-SaaS: erst Piloten mit 3 Krankenhäusern.“' },
+  { cat: 'startup', word: 'Iteration', def: 'Schnelle Verbesserungszyklen basierend auf Feedback – bauen, messen, lernen, wiederholen.', ex: '„Wir iterieren wöchentlich auf dem Onboarding-Flow.“' },
+  { cat: 'startup', word: 'Product Roadmap', def: 'Priorisierter Plan, welche Features wann gebaut werden – kommuniziert Richtung, ist kein Versprechen.', ex: '„Roadmap Q3: Auth, API v2, Mobile App.“' },
+  { cat: 'startup', word: 'Stakeholder', def: 'Alle Beteiligten, die ein Interesse am Unternehmen haben – Investoren, Kunden, Mitarbeiter, Partner.', ex: '„Stakeholder-Update jeden Monat per Investor-Newsletter.“' },
+  { cat: 'startup', word: 'Pitch Deck', def: '10–15 Slides, die ein Startup Investoren präsentiert – Problem, Lösung, Markt, Traction, Team, Finanzierungsbedarf.', ex: '„Das Pitch Deck ist die Visitenkarte beim ersten VC-Meeting.“' },
+  { cat: 'github', word: 'Repository (Repo)', def: 'Ein Ordner/Projektbehälter auf GitHub – enthält alle Dateien, die gesamte Versionsgeschichte und Einstellungen.', ex: '„github.com/jakobklemm/destatis ist dein Repo.“' },
+  { cat: 'github', word: 'Commit', def: 'Eine gespeicherte Momentaufnahme von Änderungen – wie ein Checkpoint mit Beschreibung, wer was wann geändert hat.', ex: "„git commit -m 'Fix typo in abstract'“" },
+  { cat: 'github', word: 'Branch', def: 'Ein paralleler Entwicklungsstrang – du arbeitest isoliert, ohne die Hauptversion zu gefährden, und mergst später.', ex: "„Erstelle Branch 'feature/export-pdf' für die neue Funktion.“" },
+  { cat: 'github', word: 'Main / Master', def: 'Der Haupt-Branch eines Repos – die „offizielle“ Version. Früher „master“, heute meist „main“.', ex: '„Merge nur getesteten Code in main.“' },
+  { cat: 'github', word: 'Merge', def: 'Das Zusammenführen von zwei Branches – Änderungen aus einem Branch fließen in einen anderen (meist main).', ex: '„Nach dem Code Review: Branch in main mergen.“' },
+  { cat: 'github', word: 'Pull Request (PR)', def: 'Ein Vorschlag, Änderungen zu mergen – andere können kommentieren, reviewen und genehmigen, bevor der Merge passiert.', ex: '„PR erstellen → Review anfordern → Approve → Merge.“' },
+  { cat: 'github', word: 'Fork', def: 'Eine persönliche Kopie eines fremden Repos – du kannst unabhängig arbeiten und später Änderungen zurückvorschlagen.', ex: '„Forke das Repo, mach Änderungen, erstelle dann einen PR.“' },
+  { cat: 'github', word: 'Clone', def: 'Eine lokale Kopie eines Remote-Repos auf deinen Computer herunterladen.', ex: '„git clone https://github.com/jakobklemm/destatis.git“' },
+  { cat: 'github', word: 'Push', def: 'Lokale Commits auf GitHub (Remote) hochladen – macht deine Änderungen für andere sichtbar.', ex: '„git push origin main“' },
+  { cat: 'github', word: 'Pull', def: 'Neueste Änderungen vom Remote-Repo herunterladen und mit deiner lokalen Version zusammenführen.', ex: '„git pull – immer zuerst pullen, bevor du anfängst zu arbeiten.“' },
+  { cat: 'github', word: 'Fetch', def: 'Wie pull, aber ohne automatisches Mergen – du schaust erst, was sich geändert hat, bevor du entscheidest.', ex: '„git fetch → git diff origin/main → dann pull oder merge.“' },
+  { cat: 'github', word: 'Merge Conflict', def: 'Wenn zwei Personen dieselbe Stelle in einer Datei unterschiedlich geändert haben – muss manuell aufgelöst werden.', ex: '„Merge Conflict in do-file Zeile 42 – welche Version ist korrekt?“' },
+  { cat: 'github', word: 'README.md', def: 'Die Startseite eines Repos – erklärt, was das Projekt macht, wie man es nutzt und wie man beiträgt.', ex: '„Ein gutes README ist die halbe Dokumentation.“' },
+  { cat: 'github', word: 'Issue', def: "Ein Eintrag für Bug-Reports, Feature-Requests oder Aufgaben – GitHub's integriertes Ticketsystem.", ex: '„Issue #7: CSV-Import schlägt fehl bei Sonderzeichen.“' },
+  { cat: 'github', word: '.gitignore', def: 'Eine Datei, die festlegt, welche Dateien Git ignorieren soll – z.B. Rohdaten, Passwörter, temporäre Systemdateien.', ex: '„*.dta und /data/ in .gitignore – Rohdaten nie hochladen.“' },
+  { cat: 'github', word: 'GitHub Actions', def: 'Automatisierung direkt in GitHub – z.B. Tests automatisch laufen lassen wenn jemand committed.', ex: '„Action: bei jedem Push automatisch Stata do-file testen.“' },
+  { cat: 'github', word: 'Tag / Release', def: 'Eine benannte Version eines Commits – z.B. „v1.0“ für die finale Einreichung eines Manuskripts.', ex: '„Release v1.0 = Version die an Journal of Urology eingereicht wurde.“' },
+  { cat: 'github', word: 'Stash', def: 'Änderungen temporär „weglegen“ ohne zu committen – nützlich wenn man schnell den Branch wechseln muss.', ex: '„git stash → Branch wechseln → git stash pop“' },
+  { cat: 'github', word: 'Origin', def: 'Der Standard-Name für das Remote-Repo – also das Repo auf GitHub, von dem geclont wurde.', ex: '„git push origin main = hochladen auf GitHub.“' },
+  { cat: 'github', word: 'Diff', def: 'Die Ansicht der Unterschiede zwischen zwei Versionen einer Datei – hinzugefügte Zeilen grün, entfernte rot.', ex: '„git diff zeigt genau, was du seit dem letzten Commit geändert hast.“' },
+];
+
+let filtered = [...vocab];
+let currentIndex = 0;
+let known = new Set();
+let currentCat = 'all';
+
+function setCategory(cat) {
+  currentCat = cat;
+  filtered = cat === 'all' ? [...vocab] : vocab.filter(v => v.cat === cat);
+  for (let i = filtered.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+  }
+  currentIndex = 0;
+  document.getElementById('card').classList.remove('flipped');
+  document.querySelectorAll('.tab').forEach(t => t.className = 'tab');
+  const tabMap = { all: 'active-all', startup: 'active-startup', github: 'active-github' };
+  event.target.className = 'tab ' + tabMap[cat];
+  renderCard();
+  renderWordGrid();
+}
+
+function renderCard() {
+  updateProgress();
+  if (currentIndex >= filtered.length) { showDone(); return; }
+  const v = filtered[currentIndex];
+  const catLabel = v.cat === 'startup' ? '🚀 Startup' : '⌥ GitHub';
+  const catClass = v.cat === 'startup' ? 'cat-startup' : 'cat-github';
+  document.getElementById('front-cat').textContent = catLabel;
+  document.getElementById('front-cat').className = 'card-category ' + catClass;
+  document.getElementById('front-word').textContent = v.word;
+  document.getElementById('back-cat').textContent = catLabel;
+  document.getElementById('back-cat').className = 'card-category ' + catClass;
+  document.getElementById('back-def').textContent = v.def;
+  document.getElementById('back-ex').textContent = v.ex;
+  document.getElementById('card-counter').textContent = `Karte ${currentIndex + 1}/${filtered.length}`;
+  document.getElementById('controls').style.display = 'flex';
+  document.getElementById('card').style.display = 'block';
+}
+
+function showDone() {
+  document.getElementById('card').innerHTML = `<div class="card-face card-front done-state" style="position:relative;backface-visibility:visible;background:var(--card-front);border-radius:1.2rem;border:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;">
+    <div class="big">&#x1F389; Fertig!</div>
+    <div class="sub">${known.size} von ${filtered.length} als bekannt markiert</div>
+    <button class="btn btn-primary" style="margin-top:1.5rem;" onclick="restartDeck()">Neu mischen &#x21BA;</button>
+  </div>`;
+  document.getElementById('controls').style.display = 'none';
+}
+
+function restartDeck() {
+  document.getElementById('card').innerHTML = `<div class="card-inner" id="card-inner"><div class="card-face card-front" id="front"><div class="card-category" id="front-cat"></div><div class="card-word" id="front-word"></div><div class="card-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2H3v16h5l4 4 4-4h5V2z"/></svg>antippen zum Aufdecken</div></div><div class="card-face card-back" id="back"><div class="card-category" id="back-cat"></div><div class="card-definition" id="back-def"></div><div class="card-example" id="back-ex"></div></div></div>`;
+  document.getElementById('card').onclick = flipCard;
+  currentIndex = 0;
+  for (let i = filtered.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+  }
+  document.getElementById('card').classList.remove('flipped');
+  renderCard();
+}
+
+function flipCard() { document.getElementById('card').classList.toggle('flipped'); }
+function markKnown() { known.add(filtered[currentIndex].word); nextCard(); }
+function markSkip() { nextCard(); }
+
+function nextCard() {
+  document.getElementById('card').classList.remove('flipped');
+  currentIndex++;
+  setTimeout(renderCard, 100);
+  renderWordGrid();
+}
+
+function updateProgress() {
+  const pct = filtered.length > 0 ? (known.size / filtered.length * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${known.size} von ${filtered.length} bekannt`;
+}
+
+function renderWordGrid() {
+  const grid = document.getElementById('word-grid');
+  const list = currentCat === 'all' ? vocab : vocab.filter(v => v.cat === currentCat);
+  grid.innerHTML = list.map(v => {
+    const chipCat = v.cat === 'startup' ? 'startup-chip' : 'github-chip';
+    const isKnown = known.has(v.word) ? 'known' : '';
+    return `<div class="word-chip ${chipCat} ${isKnown}" onclick="jumpTo('${v.word.replace(/'/g, "\\'")}')">${v.word}</div>`;
+  }).join('');
+}
+
+function jumpTo(word) {
+  const idx = filtered.findIndex(v => v.word === word);
+  if (idx === -1) {
+    currentCat = 'all';
+    filtered = [...vocab];
+    document.querySelectorAll('.tab').forEach((t, i) => { t.className = i === 0 ? 'tab active-all' : 'tab'; });
+    setTimeout(() => jumpTo(word), 50);
+    return;
+  }
+  currentIndex = idx;
+  document.getElementById('card').classList.remove('flipped');
+  renderCard();
+}
+
+renderCard();
+renderWordGrid();
+</script>
+</body>
+</html>
