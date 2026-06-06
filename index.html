@@ -21,6 +21,7 @@
     --border: #2a2a38;
     --startup: #f06c4a;
     --github: #4af0c4;
+    --web: #7b9ef0;
   }
 
   body {
@@ -110,6 +111,7 @@
   .tab.active-startup { background: rgba(240,108,74,0.15); border-color: var(--startup); color: var(--startup); }
   .tab.active-github { background: rgba(74,240,196,0.12); border-color: var(--github); color: var(--github); }
   .tab.active-all { background: rgba(196,74,240,0.12); border-color: var(--accent3); color: var(--accent3); }
+  .tab.active-web { background: rgba(123,158,240,0.12); border-color: var(--web); color: var(--web); }
 
   /* Progress */
   .progress-wrap {
@@ -199,6 +201,7 @@
 
   .cat-startup { color: var(--startup); border-color: rgba(240,108,74,0.4); background: rgba(240,108,74,0.08); }
   .cat-github { color: var(--github); border-color: rgba(74,240,196,0.3); background: rgba(74,240,196,0.07); }
+  .cat-web { color: var(--web); border-color: rgba(123,158,240,0.4); background: rgba(123,158,240,0.08); }
 
   .card-word {
     font-family: 'Fraunces', serif;
@@ -338,6 +341,7 @@
   .word-chip.known::before { content: '✓ '; opacity: 0.7; }
   .word-chip.startup-chip { border-left: 2px solid var(--startup); }
   .word-chip.github-chip { border-left: 2px solid var(--github); }
+  .word-chip.web-chip { border-left: 2px solid var(--web); }
 
   @media (max-width: 480px) {
     .card-stage { height: 280px; }
@@ -369,6 +373,7 @@
   <button class="tab active-all" onclick="setCategory('all')">Alle</button>
   <button class="tab" onclick="setCategory('startup')">🚀 Startup</button>
   <button class="tab" onclick="setCategory('github')">⌥ GitHub</button>
+  <button class="tab" onclick="setCategory('web')">🌐 Web & Hosting</button>
 </div>
 
 <div class="progress-wrap">
@@ -437,6 +442,22 @@ const vocab = [
   { cat: 'startup', word: 'Stakeholder', def: 'Alle Beteiligten, die ein Interesse am Unternehmen haben – Investoren, Kunden, Mitarbeiter, Partner.', ex: '„Stakeholder-Update jeden Monat per Investor-Newsletter."' },
   { cat: 'startup', word: 'Pitch Deck', def: '10–15 Slides, die ein Startup Investoren präsentiert – Problem, Lösung, Markt, Traction, Team, Finanzierungsbedarf.', ex: '„Das Pitch Deck ist die Visitenkarte beim ersten VC-Meeting."' },
 
+  // ── WEB & HOSTING ──
+  { cat: 'web', word: 'Frontend', def: 'Der sichtbare Teil einer App – alles, was Nutzer im Browser sehen und anklicken: Design, Buttons, Formulare.', ex: '„Das Frontend ist in React gebaut – läuft komplett im Browser des Nutzers."' },
+  { cat: 'web', word: 'Backend', def: 'Die unsichtbare Serverseite – verarbeitet Logik, spricht mit der Datenbank, schickt Ergebnisse ans Frontend zurück.', ex: '„Login-Prüfung, Zahlungsabwicklung, E-Mail-Versand – alles Backend."' },
+  { cat: 'web', word: 'Full-Stack', def: 'Ein Entwickler, der sowohl Frontend als auch Backend beherrscht – kann eine App alleine von A bis Z bauen.', ex: '„Als Full-Stack-Entwickler baut er MVP-Prototypen im Alleingang."' },
+  { cat: 'web', word: 'API', def: 'Application Programming Interface – eine Schnittstelle, über die Systeme miteinander kommunizieren. Wie ein Kellner zwischen Küche und Gast.', ex: '„Stripe-API für Zahlungen, Google-Maps-API für Standort – fertige Bausteine kaufen statt neu bauen."' },
+  { cat: 'web', word: 'Framework', def: 'Ein vorgefertigtes Grundgerüst für Software – gibt Struktur vor und spart Zeit. Entwickler bauen darauf auf statt von Null zu starten.', ex: '„React (Frontend), Django (Backend) – Frameworks beschleunigen die Entwicklung massiv."' },
+  { cat: 'web', word: 'Domain', def: 'Die Webadresse einer Website (z.B. google.com) – wird jährlich beim Domain-Registrar gemietet. Wichtig für Branding und Wiedererkennung.', ex: '„startup.io klingt internationaler als startup.de – Domain-Wahl ist auch Markenstrategie."' },
+  { cat: 'web', word: 'Hosting', def: 'Der Dienst, der deine App auf einem Server speichert und rund um die Uhr im Internet erreichbar macht.', ex: '„Vercel für Frontend, Railway für Backend – modernes Startup-Hosting ohne eigene Server."' },
+  { cat: 'web', word: 'Cloud', def: 'Server-Infrastruktur, die über das Internet gemietet wird – statt eigener Hardware. Flexibel, skalierbar, nur zahlen was man nutzt.', ex: '„AWS, Google Cloud, Azure – die drei großen Cloud-Anbieter hinter fast allem."' },
+  { cat: 'web', word: 'Deployment', def: 'Den fertigen Code live schalten – von der Entwicklung auf den echten Server bringen, sodass Nutzer ihn verwenden können.', ex: '„Nach jedem Merge in main: automatisches Deployment – die Seite ist in Minuten live."' },
+  { cat: 'web', word: 'Staging', def: 'Eine Testumgebung, die die echte App 1:1 nachahmt – zum Testen vor dem Live-Gang. Fehler finden, bevor Nutzer sie sehen.', ex: '„Erst auf Staging testen, dann auf Production deployen – niemals direkt live testen."' },
+  { cat: 'web', word: 'Production', def: 'Die echte, live laufende Version deiner App – das, was echte Nutzer sehen und nutzen. Fehler hier sind sofort spürbar.', ex: '„Bug in Production um 2 Uhr nachts – der Alptraum jedes Entwicklers."' },
+  { cat: 'web', word: 'Responsive Design', def: 'Das Layout einer Website passt sich automatisch an die Bildschirmgröße an – Desktop, Tablet und Smartphone sehen alle gut aus.', ex: '„70% der Nutzer kommen mobil – ohne Responsive Design verlierst du sie sofort."' },
+  { cat: 'web', word: 'Open Source', def: 'Quellcode ist öffentlich zugänglich – jeder kann ihn lesen, nutzen, verbessern und weitergeben. Basis der meisten Tech-Infrastruktur.', ex: '„Linux, React, Python – alles Open Source. Kostenlos nutzen, Community zurückgeben."' },
+  { cat: 'web', word: 'Skalierbarkeit', def: 'Fähigkeit eines Systems, mit wachsender Last umzugehen – mehr Nutzer, mehr Daten, ohne Einbruch der Performance.', ex: '„Twitter hatte täglich Skalierungsprobleme – der Fail Whale wurde berühmt."' },
+
   // ── GITHUB ──
   { cat: 'github', word: 'Repository (Repo)', def: 'Ein Ordner/Projektbehälter auf GitHub – enthält alle Dateien, die gesamte Versionsgeschichte und Einstellungen.', ex: '„github.com/jakobklemm/destatis ist dein Repo."' },
   { cat: 'github', word: 'Commit', def: 'Eine gespeicherte Momentaufnahme von Änderungen – wie ein Checkpoint mit Beschreibung, wer was wann geändert hat.', ex: '„git commit -m \'Fix typo in abstract\'"' },
@@ -477,7 +498,7 @@ function setCategory(cat) {
   document.getElementById('card').classList.remove('flipped');
   // update tabs
   document.querySelectorAll('.tab').forEach(t => t.className = 'tab');
-  const tabMap = { all: 'active-all', startup: 'active-startup', github: 'active-github' };
+  const tabMap = { all: 'active-all', startup: 'active-startup', github: 'active-github', web: 'active-web' };
   event.target.className = 'tab ' + tabMap[cat];
   renderCard();
   renderWordGrid();
@@ -490,8 +511,8 @@ function renderCard() {
     return;
   }
   const v = filtered[currentIndex];
-  const catLabel = v.cat === 'startup' ? '🚀 Startup' : '⌥ GitHub';
-  const catClass = v.cat === 'startup' ? 'cat-startup' : 'cat-github';
+  const catLabel = v.cat === 'startup' ? '🚀 Startup' : v.cat === 'github' ? '⌥ GitHub' : '🌐 Web & Hosting';
+  const catClass = v.cat === 'startup' ? 'cat-startup' : v.cat === 'github' ? 'cat-github' : 'cat-web';
 
   document.getElementById('front-cat').textContent = catLabel;
   document.getElementById('front-cat').className = 'card-category ' + catClass;
@@ -559,7 +580,7 @@ function renderWordGrid() {
   const grid = document.getElementById('word-grid');
   const list = currentCat === 'all' ? vocab : vocab.filter(v => v.cat === currentCat);
   grid.innerHTML = list.map((v, i) => {
-    const chipCat = v.cat === 'startup' ? 'startup-chip' : 'github-chip';
+    const chipCat = v.cat === 'startup' ? 'startup-chip' : v.cat === 'github' ? 'github-chip' : 'web-chip';
     const isKnown = known.has(v.word) ? 'known' : '';
     return `<div class="word-chip ${chipCat} ${isKnown}" onclick="jumpTo('${v.word}')">${v.word}</div>`;
   }).join('');
