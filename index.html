@@ -416,69 +416,69 @@
 <script>
 const vocab = [
   // ── STARTUP ──
-  { cat: 'startup', word: 'MVP', def: 'Minimum Viable Product – die kleinstmögliche Version eines Produkts, die echte Nutzer testen können. Ziel: schnell lernen, ohne viel zu bauen.', ex: '„Wir launchen erst den MVP, dann iterieren wir basierend auf Feedback."' },
-  { cat: 'startup', word: 'Product-Market Fit', def: 'Der Moment, wenn dein Produkt ein echtes Problem einer echten Zielgruppe löst – messbar daran, dass Nutzer es wirklich wollen und nutzen.', ex: '„Retention-Kurven flachen ab → noch kein Product-Market Fit."' },
-  { cat: 'startup', word: 'Pivot', def: 'Eine strategische Kursänderung des Geschäftsmodells oder Produkts, ohne die gesamte Firma neu zu gründen.', ex: '„Slack begann als Spielefirma – der Pivot zum Chat-Tool rettete sie."' },
-  { cat: 'startup', word: 'Runway', def: 'Wie viele Monate ein Startup mit dem aktuellen Kapital überleben kann, wenn keine neuen Einnahmen reinkommen.', ex: '„Wir haben 18 Monate Runway – danach brauchen wir Series A."' },
-  { cat: 'startup', word: 'Burn Rate', def: 'Wie schnell ein Startup Geld ausgibt – monatliche Netto-Ausgaben (Kosten minus Einnahmen).', ex: '„Burn Rate: 40k€/Monat. Runway: 12 Monate."' },
-  { cat: 'startup', word: 'Bootstrapping', def: 'Ein Startup ohne externe Investoren aufbauen – ausschließlich mit eigenem Geld oder Einnahmen finanziert.', ex: '„Basecamp ist seit 20 Jahren gebootstrapped und profitabel."' },
-  { cat: 'startup', word: 'Seed-Runde', def: 'Die erste formale Finanzierungsrunde – meist von Business Angels oder Seed-Fonds. Typisch: 200k–2M EUR gegen Anteile.', ex: '„Nach dem Seed haben wir unser erstes Team eingestellt."' },
-  { cat: 'startup', word: 'Series A / B / C', def: 'Wachstumsfinanzierungsrunden nach der Seed-Phase. A = Skalierung des Modells, B = Marktexpansion, C+ = IPO-Vorbereitung oder M&A.', ex: '„Series A von 8M EUR – jetzt bauen wir Sales aus."' },
-  { cat: 'startup', word: 'Cap Table', def: 'Capitalization Table – Tabelle aller Gesellschafter mit ihren Anteilen, Verwässerungseffekten und Bewertungsrunden.', ex: '„Vor dem Term Sheet immer den Cap Table prüfen."' },
-  { cat: 'startup', word: 'Valuation / Bewertung', def: 'Was das Startup „wert" ist – entweder Pre-Money (vor Investition) oder Post-Money (danach). Rein verhandelt, nicht objektiv.', ex: '„Pre-Money Valuation: 5M → bei 1M Investment Post-Money: 6M."' },
-  { cat: 'startup', word: 'Term Sheet', def: 'Nicht-bindende Zusammenfassung der Investitionskonditionen (Bewertung, Anteile, Vorzugsrechte). Grundlage für den finalen Vertrag.', ex: '„VC hat uns ein Term Sheet geschickt – jetzt Anwalt einschalten."' },
-  { cat: 'startup', word: 'Vesting', def: 'Anteile werden nicht sofort, sondern über Zeit „verdient" – typisch 4 Jahre mit 1 Jahr Cliff. Schützt gegen frühen Ausstieg von Gründern.', ex: '„1 Jahr Cliff bedeutet: verlässtst du vorher, bekommst du 0."' },
-  { cat: 'startup', word: 'Cliff', def: 'Der Zeitpunkt, ab dem das erste Vesting einsetzt – vor dem Cliff bekommt man keine Anteile, danach alle auf einmal.', ex: '„Nach dem 1-Jahres-Cliff: 25% der Anteile sofort, dann monatlich."' },
-  { cat: 'startup', word: 'Due Diligence', def: 'Sorgfältige Prüfung eines Unternehmens durch Investoren vor Abschluss – Finanzen, Technik, Rechtliches, Team.', ex: '„VC ist in der Due Diligence – brauchen Zugriff auf unsere Verträge."' },
-  { cat: 'startup', word: 'Traction', def: 'Messbare Beweise, dass das Produkt funktioniert – Nutzer, Umsatz, Wachstum. Das Wichtigste im Pitch.', ex: '„200 zahlende Kunden in 3 Monaten – das ist echte Traction."' },
-  { cat: 'startup', word: 'KPI', def: 'Key Performance Indicator – die wenigen Metriken, die wirklich zählen. Für SaaS z.B. MRR, Churn, CAC, LTV.', ex: '„Unser North Star KPI: aktive Nutzer pro Woche."' },
-  { cat: 'startup', word: 'MRR / ARR', def: 'Monthly/Annual Recurring Revenue – monatlicher oder jährlicher wiederkehrender Umsatz. Heilige Zahl im SaaS.', ex: '„Wir haben 50k MRR erreicht – Glückwunsch zum Meilenstein!"' },
-  { cat: 'startup', word: 'Churn', def: 'Wie viele Kunden in einem Zeitraum abwandern – monatlich als Prozentsatz gemessen. Hoher Churn killt jedes SaaS.', ex: '„5% monatlicher Churn = fast alle Kunden in einem Jahr verloren."' },
-  { cat: 'startup', word: 'CAC', def: 'Customer Acquisition Cost – wie viel kostet es, einen neuen Kunden zu gewinnen (Marketing + Sales geteilt durch neue Kunden).', ex: '„CAC: 200€, LTV: 800€ → gesundes Verhältnis."' },
-  { cat: 'startup', word: 'LTV', def: 'Lifetime Value – wie viel Umsatz ein Kunde im Schnitt über die gesamte Kundenbeziehung bringt.', ex: '„LTV/CAC-Ratio sollte mindestens 3:1 sein."' },
-  { cat: 'startup', word: 'Go-to-Market (GTM)', def: 'Die Strategie, wie man ein Produkt zum Kunden bringt – Zielgruppe, Kanäle, Pricing, Sales-Prozess.', ex: '„GTM für Healthcare-SaaS: erst Piloten mit 3 Krankenhäusern."' },
-  { cat: 'startup', word: 'Iteration', def: 'Schnelle Verbesserungszyklen basierend auf Feedback – bauen, messen, lernen, wiederholen.', ex: '„Wir iterieren wöchentlich auf dem Onboarding-Flow."' },
-  { cat: 'startup', word: 'Product Roadmap', def: 'Priorisierter Plan, welche Features wann gebaut werden – kommuniziert Richtung, ist kein Versprechen.', ex: '„Roadmap Q3: Auth, API v2, Mobile App."' },
-  { cat: 'startup', word: 'Stakeholder', def: 'Alle Beteiligten, die ein Interesse am Unternehmen haben – Investoren, Kunden, Mitarbeiter, Partner.', ex: '„Stakeholder-Update jeden Monat per Investor-Newsletter."' },
-  { cat: 'startup', word: 'Pitch Deck', def: '10–15 Slides, die ein Startup Investoren präsentiert – Problem, Lösung, Markt, Traction, Team, Finanzierungsbedarf.', ex: '„Das Pitch Deck ist die Visitenkarte beim ersten VC-Meeting."' },
+  { cat: 'startup', word: 'MVP', def: 'Minimum Viable Product – die kleinstmögliche Version eines Produkts, die echte Nutzer testen können. Ziel: schnell lernen, ohne viel zu bauen.', ex: '„Wir launchen erst den MVP, dann iterieren wir basierend auf Feedback.“' },
+  { cat: 'startup', word: 'Product-Market Fit', def: 'Der Moment, wenn dein Produkt ein echtes Problem einer echten Zielgruppe löst – messbar daran, dass Nutzer es wirklich wollen und nutzen.', ex: '„Retention-Kurven flachen ab → noch kein Product-Market Fit.“' },
+  { cat: 'startup', word: 'Pivot', def: 'Eine strategische Kursänderung des Geschäftsmodells oder Produkts, ohne die gesamte Firma neu zu gründen.', ex: '„Slack begann als Spielefirma – der Pivot zum Chat-Tool rettete sie.“' },
+  { cat: 'startup', word: 'Runway', def: 'Wie viele Monate ein Startup mit dem aktuellen Kapital überleben kann, wenn keine neuen Einnahmen reinkommen.', ex: '„Wir haben 18 Monate Runway – danach brauchen wir Series A.“' },
+  { cat: 'startup', word: 'Burn Rate', def: 'Wie schnell ein Startup Geld ausgibt – monatliche Netto-Ausgaben (Kosten minus Einnahmen).', ex: '„Burn Rate: 40k€/Monat. Runway: 12 Monate.“' },
+  { cat: 'startup', word: 'Bootstrapping', def: 'Ein Startup ohne externe Investoren aufbauen – ausschließlich mit eigenem Geld oder Einnahmen finanziert.', ex: '„Basecamp ist seit 20 Jahren gebootstrapped und profitabel.“' },
+  { cat: 'startup', word: 'Seed-Runde', def: 'Die erste formale Finanzierungsrunde – meist von Business Angels oder Seed-Fonds. Typisch: 200k–2M EUR gegen Anteile.', ex: '„Nach dem Seed haben wir unser erstes Team eingestellt.“' },
+  { cat: 'startup', word: 'Series A / B / C', def: 'Wachstumsfinanzierungsrunden nach der Seed-Phase. A = Skalierung des Modells, B = Marktexpansion, C+ = IPO-Vorbereitung oder M&A.', ex: '„Series A von 8M EUR – jetzt bauen wir Sales aus.“' },
+  { cat: 'startup', word: 'Cap Table', def: 'Capitalization Table – Tabelle aller Gesellschafter mit ihren Anteilen, Verwässerungseffekten und Bewertungsrunden.', ex: '„Vor dem Term Sheet immer den Cap Table prüfen.“' },
+  { cat: 'startup', word: 'Valuation / Bewertung', def: 'Was das Startup „wert“ ist – entweder Pre-Money (vor Investition) oder Post-Money (danach). Rein verhandelt, nicht objektiv.', ex: '„Pre-Money Valuation: 5M → bei 1M Investment Post-Money: 6M.“' },
+  { cat: 'startup', word: 'Term Sheet', def: 'Nicht-bindende Zusammenfassung der Investitionskonditionen (Bewertung, Anteile, Vorzugsrechte). Grundlage für den finalen Vertrag.', ex: '„VC hat uns ein Term Sheet geschickt – jetzt Anwalt einschalten.“' },
+  { cat: 'startup', word: 'Vesting', def: 'Anteile werden nicht sofort, sondern über Zeit „verdient“ – typisch 4 Jahre mit 1 Jahr Cliff. Schützt gegen frühen Ausstieg von Gründern.', ex: '„1 Jahr Cliff bedeutet: verlässtst du vorher, bekommst du 0.“' },
+  { cat: 'startup', word: 'Cliff', def: 'Der Zeitpunkt, ab dem das erste Vesting einsetzt – vor dem Cliff bekommt man keine Anteile, danach alle auf einmal.', ex: '„Nach dem 1-Jahres-Cliff: 25% der Anteile sofort, dann monatlich.“' },
+  { cat: 'startup', word: 'Due Diligence', def: 'Sorgfältige Prüfung eines Unternehmens durch Investoren vor Abschluss – Finanzen, Technik, Rechtliches, Team.', ex: '„VC ist in der Due Diligence – brauchen Zugriff auf unsere Verträge.“' },
+  { cat: 'startup', word: 'Traction', def: 'Messbare Beweise, dass das Produkt funktioniert – Nutzer, Umsatz, Wachstum. Das Wichtigste im Pitch.', ex: '„200 zahlende Kunden in 3 Monaten – das ist echte Traction.“' },
+  { cat: 'startup', word: 'KPI', def: 'Key Performance Indicator – die wenigen Metriken, die wirklich zählen. Für SaaS z.B. MRR, Churn, CAC, LTV.', ex: '„Unser North Star KPI: aktive Nutzer pro Woche.“' },
+  { cat: 'startup', word: 'MRR / ARR', def: 'Monthly/Annual Recurring Revenue – monatlicher oder jährlicher wiederkehrender Umsatz. Heilige Zahl im SaaS.', ex: '„Wir haben 50k MRR erreicht – Glückwunsch zum Meilenstein!“' },
+  { cat: 'startup', word: 'Churn', def: 'Wie viele Kunden in einem Zeitraum abwandern – monatlich als Prozentsatz gemessen. Hoher Churn killt jedes SaaS.', ex: '„5% monatlicher Churn = fast alle Kunden in einem Jahr verloren.“' },
+  { cat: 'startup', word: 'CAC', def: 'Customer Acquisition Cost – wie viel kostet es, einen neuen Kunden zu gewinnen (Marketing + Sales geteilt durch neue Kunden).', ex: '„CAC: 200€, LTV: 800€ → gesundes Verhältnis.“' },
+  { cat: 'startup', word: 'LTV', def: 'Lifetime Value – wie viel Umsatz ein Kunde im Schnitt über die gesamte Kundenbeziehung bringt.', ex: '„LTV/CAC-Ratio sollte mindestens 3:1 sein.“' },
+  { cat: 'startup', word: 'Go-to-Market (GTM)', def: 'Die Strategie, wie man ein Produkt zum Kunden bringt – Zielgruppe, Kanäle, Pricing, Sales-Prozess.', ex: '„GTM für Healthcare-SaaS: erst Piloten mit 3 Krankenhäusern.“' },
+  { cat: 'startup', word: 'Iteration', def: 'Schnelle Verbesserungszyklen basierend auf Feedback – bauen, messen, lernen, wiederholen.', ex: '„Wir iterieren wöchentlich auf dem Onboarding-Flow.“' },
+  { cat: 'startup', word: 'Product Roadmap', def: 'Priorisierter Plan, welche Features wann gebaut werden – kommuniziert Richtung, ist kein Versprechen.', ex: '„Roadmap Q3: Auth, API v2, Mobile App.“' },
+  { cat: 'startup', word: 'Stakeholder', def: 'Alle Beteiligten, die ein Interesse am Unternehmen haben – Investoren, Kunden, Mitarbeiter, Partner.', ex: '„Stakeholder-Update jeden Monat per Investor-Newsletter.“' },
+  { cat: 'startup', word: 'Pitch Deck', def: '10–15 Slides, die ein Startup Investoren präsentiert – Problem, Lösung, Markt, Traction, Team, Finanzierungsbedarf.', ex: '„Das Pitch Deck ist die Visitenkarte beim ersten VC-Meeting.“' },
 
   // ── WEB & HOSTING ──
-  { cat: 'web', word: 'Frontend', def: 'Der sichtbare Teil einer App – alles, was Nutzer im Browser sehen und anklicken: Design, Buttons, Formulare.', ex: '„Das Frontend ist in React gebaut – läuft komplett im Browser des Nutzers."' },
-  { cat: 'web', word: 'Backend', def: 'Die unsichtbare Serverseite – verarbeitet Logik, spricht mit der Datenbank, schickt Ergebnisse ans Frontend zurück.', ex: '„Login-Prüfung, Zahlungsabwicklung, E-Mail-Versand – alles Backend."' },
-  { cat: 'web', word: 'Full-Stack', def: 'Ein Entwickler, der sowohl Frontend als auch Backend beherrscht – kann eine App alleine von A bis Z bauen.', ex: '„Als Full-Stack-Entwickler baut er MVP-Prototypen im Alleingang."' },
-  { cat: 'web', word: 'API', def: 'Application Programming Interface – eine Schnittstelle, über die Systeme miteinander kommunizieren. Wie ein Kellner zwischen Küche und Gast.', ex: '„Stripe-API für Zahlungen, Google-Maps-API für Standort – fertige Bausteine kaufen statt neu bauen."' },
-  { cat: 'web', word: 'Framework', def: 'Ein vorgefertigtes Grundgerüst für Software – gibt Struktur vor und spart Zeit. Entwickler bauen darauf auf statt von Null zu starten.', ex: '„React (Frontend), Django (Backend) – Frameworks beschleunigen die Entwicklung massiv."' },
-  { cat: 'web', word: 'Domain', def: 'Die Webadresse einer Website (z.B. google.com) – wird jährlich beim Domain-Registrar gemietet. Wichtig für Branding und Wiedererkennung.', ex: '„startup.io klingt internationaler als startup.de – Domain-Wahl ist auch Markenstrategie."' },
-  { cat: 'web', word: 'Hosting', def: 'Der Dienst, der deine App auf einem Server speichert und rund um die Uhr im Internet erreichbar macht.', ex: '„Vercel für Frontend, Railway für Backend – modernes Startup-Hosting ohne eigene Server."' },
-  { cat: 'web', word: 'Cloud', def: 'Server-Infrastruktur, die über das Internet gemietet wird – statt eigener Hardware. Flexibel, skalierbar, nur zahlen was man nutzt.', ex: '„AWS, Google Cloud, Azure – die drei großen Cloud-Anbieter hinter fast allem."' },
-  { cat: 'web', word: 'Deployment', def: 'Den fertigen Code live schalten – von der Entwicklung auf den echten Server bringen, sodass Nutzer ihn verwenden können.', ex: '„Nach jedem Merge in main: automatisches Deployment – die Seite ist in Minuten live."' },
-  { cat: 'web', word: 'Staging', def: 'Eine Testumgebung, die die echte App 1:1 nachahmt – zum Testen vor dem Live-Gang. Fehler finden, bevor Nutzer sie sehen.', ex: '„Erst auf Staging testen, dann auf Production deployen – niemals direkt live testen."' },
-  { cat: 'web', word: 'Production', def: 'Die echte, live laufende Version deiner App – das, was echte Nutzer sehen und nutzen. Fehler hier sind sofort spürbar.', ex: '„Bug in Production um 2 Uhr nachts – der Alptraum jedes Entwicklers."' },
-  { cat: 'web', word: 'Responsive Design', def: 'Das Layout einer Website passt sich automatisch an die Bildschirmgröße an – Desktop, Tablet und Smartphone sehen alle gut aus.', ex: '„70% der Nutzer kommen mobil – ohne Responsive Design verlierst du sie sofort."' },
-  { cat: 'web', word: 'Open Source', def: 'Quellcode ist öffentlich zugänglich – jeder kann ihn lesen, nutzen, verbessern und weitergeben. Basis der meisten Tech-Infrastruktur.', ex: '„Linux, React, Python – alles Open Source. Kostenlos nutzen, Community zurückgeben."' },
-  { cat: 'web', word: 'Skalierbarkeit', def: 'Fähigkeit eines Systems, mit wachsender Last umzugehen – mehr Nutzer, mehr Daten, ohne Einbruch der Performance.', ex: '„Twitter hatte täglich Skalierungsprobleme – der Fail Whale wurde berühmt."' },
+  { cat: 'web', word: 'Frontend', def: 'Der sichtbare Teil einer App – alles, was Nutzer im Browser sehen und anklicken: Design, Buttons, Formulare.', ex: '„Das Frontend ist in React gebaut – läuft komplett im Browser des Nutzers.“' },
+  { cat: 'web', word: 'Backend', def: 'Die unsichtbare Serverseite – verarbeitet Logik, spricht mit der Datenbank, schickt Ergebnisse ans Frontend zurück.', ex: '„Login-Prüfung, Zahlungsabwicklung, E-Mail-Versand – alles Backend.“' },
+  { cat: 'web', word: 'Full-Stack', def: 'Ein Entwickler, der sowohl Frontend als auch Backend beherrscht – kann eine App alleine von A bis Z bauen.', ex: '„Als Full-Stack-Entwickler baut er MVP-Prototypen im Alleingang.“' },
+  { cat: 'web', word: 'API', def: 'Application Programming Interface – eine Schnittstelle, über die Systeme miteinander kommunizieren. Wie ein Kellner zwischen Küche und Gast.', ex: '„Stripe-API für Zahlungen, Google-Maps-API für Standort – fertige Bausteine kaufen statt neu bauen.“' },
+  { cat: 'web', word: 'Framework', def: 'Ein vorgefertigtes Grundgerüst für Software – gibt Struktur vor und spart Zeit. Entwickler bauen darauf auf statt von Null zu starten.', ex: '„React (Frontend), Django (Backend) – Frameworks beschleunigen die Entwicklung massiv.“' },
+  { cat: 'web', word: 'Domain', def: 'Die Webadresse einer Website (z.B. google.com) – wird jährlich beim Domain-Registrar gemietet. Wichtig für Branding und Wiedererkennung.', ex: '„startup.io klingt internationaler als startup.de – Domain-Wahl ist auch Markenstrategie.“' },
+  { cat: 'web', word: 'Hosting', def: 'Der Dienst, der deine App auf einem Server speichert und rund um die Uhr im Internet erreichbar macht.', ex: '„Vercel für Frontend, Railway für Backend – modernes Startup-Hosting ohne eigene Server.“' },
+  { cat: 'web', word: 'Cloud', def: 'Server-Infrastruktur, die über das Internet gemietet wird – statt eigener Hardware. Flexibel, skalierbar, nur zahlen was man nutzt.', ex: '„AWS, Google Cloud, Azure – die drei großen Cloud-Anbieter hinter fast allem.“' },
+  { cat: 'web', word: 'Deployment', def: 'Den fertigen Code live schalten – von der Entwicklung auf den echten Server bringen, sodass Nutzer ihn verwenden können.', ex: '„Nach jedem Merge in main: automatisches Deployment – die Seite ist in Minuten live.“' },
+  { cat: 'web', word: 'Staging', def: 'Eine Testumgebung, die die echte App 1:1 nachahmt – zum Testen vor dem Live-Gang. Fehler finden, bevor Nutzer sie sehen.', ex: '„Erst auf Staging testen, dann auf Production deployen – niemals direkt live testen.“' },
+  { cat: 'web', word: 'Production', def: 'Die echte, live laufende Version deiner App – das, was echte Nutzer sehen und nutzen. Fehler hier sind sofort spürbar.', ex: '„Bug in Production um 2 Uhr nachts – der Alptraum jedes Entwicklers.“' },
+  { cat: 'web', word: 'Responsive Design', def: 'Das Layout einer Website passt sich automatisch an die Bildschirmgröße an – Desktop, Tablet und Smartphone sehen alle gut aus.', ex: '„70% der Nutzer kommen mobil – ohne Responsive Design verlierst du sie sofort.“' },
+  { cat: 'web', word: 'Open Source', def: 'Quellcode ist öffentlich zugänglich – jeder kann ihn lesen, nutzen, verbessern und weitergeben. Basis der meisten Tech-Infrastruktur.', ex: '„Linux, React, Python – alles Open Source. Kostenlos nutzen, Community zurückgeben.“' },
+  { cat: 'web', word: 'Skalierbarkeit', def: 'Fähigkeit eines Systems, mit wachsender Last umzugehen – mehr Nutzer, mehr Daten, ohne Einbruch der Performance.', ex: '„Twitter hatte täglich Skalierungsprobleme – der Fail Whale wurde berühmt.“' },
 
   // ── GITHUB ──
-  { cat: 'github', word: 'Repository (Repo)', def: 'Ein Ordner/Projektbehälter auf GitHub – enthält alle Dateien, die gesamte Versionsgeschichte und Einstellungen.', ex: '„github.com/jakobklemm/destatis ist dein Repo."' },
-  { cat: 'github', word: 'Commit', def: 'Eine gespeicherte Momentaufnahme von Änderungen – wie ein Checkpoint mit Beschreibung, wer was wann geändert hat.', ex: '„git commit -m \'Fix typo in abstract\'"' },
-  { cat: 'github', word: 'Branch', def: 'Ein paralleler Entwicklungsstrang – du arbeitest isoliert, ohne die Hauptversion zu gefährden, und mergst später.', ex: '„Erstelle Branch \'feature/export-pdf\' für die neue Funktion."' },
-  { cat: 'github', word: 'Main / Master', def: 'Der Haupt-Branch eines Repos – die „offizielle" Version. Früher „master", heute meist „main".', ex: '„Merge nur getesteten Code in main."' },
-  { cat: 'github', word: 'Merge', def: 'Das Zusammenführen von zwei Branches – Änderungen aus einem Branch fließen in einen anderen (meist main).', ex: '„Nach dem Code Review: Branch in main mergen."' },
-  { cat: 'github', word: 'Pull Request (PR)', def: 'Ein Vorschlag, Änderungen zu mergen – andere können kommentieren, reviewen und genehmigen, bevor der Merge passiert.', ex: '„PR erstellen → Review anfordern → Approve → Merge."' },
-  { cat: 'github', word: 'Fork', def: 'Eine persönliche Kopie eines fremden Repos – du kannst unabhängig arbeiten und später Änderungen zurückvorschlagen.', ex: '„Forke das Repo, mach Änderungen, erstelle dann einen PR."' },
-  { cat: 'github', word: 'Clone', def: 'Eine lokale Kopie eines Remote-Repos auf deinen Computer herunterladen.', ex: '„git clone https://github.com/jakobklemm/destatis.git"' },
-  { cat: 'github', word: 'Push', def: 'Lokale Commits auf GitHub (Remote) hochladen – macht deine Änderungen für andere sichtbar.', ex: '„git push origin main"' },
-  { cat: 'github', word: 'Pull', def: 'Neueste Änderungen vom Remote-Repo herunterladen und mit deiner lokalen Version zusammenführen.', ex: '„git pull – immer zuerst pullen, bevor du anfängst zu arbeiten."' },
-  { cat: 'github', word: 'Fetch', def: 'Wie pull, aber ohne automatisches Mergen – du schaust erst, was sich geändert hat, bevor du entscheidest.', ex: '„git fetch → git diff origin/main → dann pull oder merge."' },
-  { cat: 'github', word: 'Merge Conflict', def: 'Wenn zwei Personen dieselbe Stelle in einer Datei unterschiedlich geändert haben – muss manuell aufgelöst werden.', ex: '„Merge Conflict in do-file Zeile 42 – welche Version ist korrekt?"' },
-  { cat: 'github', word: 'README.md', def: 'Die Startseite eines Repos – erklärt, was das Projekt macht, wie man es nutzt und wie man beiträgt.', ex: '„Ein gutes README ist die halbe Dokumentation."' },
-  { cat: 'github', word: 'Issue', def: 'Ein Eintrag für Bug-Reports, Feature-Requests oder Aufgaben – GitHub\'s integriertes Ticketsystem.', ex: '„Issue #7: CSV-Import schlägt fehl bei Sonderzeichen."' },
-  { cat: 'github', word: '.gitignore', def: 'Eine Datei, die festlegt, welche Dateien Git ignorieren soll – z.B. Rohdaten, Passwörter, temporäre Systemdateien.', ex: '„*.dta und /data/ in .gitignore – Rohdaten nie hochladen."' },
-  { cat: 'github', word: 'GitHub Actions', def: 'Automatisierung direkt in GitHub – z.B. Tests automatisch laufen lassen wenn jemand committed.', ex: '„Action: bei jedem Push automatisch Stata do-file testen."' },
-  { cat: 'github', word: 'Tag / Release', def: 'Eine benannte Version eines Commits – z.B. „v1.0" für die finale Einreichung eines Manuskripts.', ex: '„Release v1.0 = Version die an Journal of Urology eingereicht wurde."' },
-  { cat: 'github', word: 'Stash', def: 'Änderungen temporär „weglegen" ohne zu committen – nützlich wenn man schnell den Branch wechseln muss.', ex: '„git stash → Branch wechseln → git stash pop"' },
-  { cat: 'github', word: 'Origin', def: 'Der Standard-Name für das Remote-Repo – also das Repo auf GitHub, von dem geclont wurde.', ex: '„git push origin main = hochladen auf GitHub."' },
-  { cat: 'github', word: 'Diff', def: 'Die Ansicht der Unterschiede zwischen zwei Versionen einer Datei – hinzugefügte Zeilen grün, entfernte rot.', ex: '„git diff zeigt genau, was du seit dem letzten Commit geändert hast."' },
+  { cat: 'github', word: 'Repository (Repo)', def: 'Ein Ordner/Projektbehälter auf GitHub – enthält alle Dateien, die gesamte Versionsgeschichte und Einstellungen.', ex: '„github.com/jakobklemm/destatis ist dein Repo.“' },
+  { cat: 'github', word: 'Commit', def: 'Eine gespeicherte Momentaufnahme von Änderungen – wie ein Checkpoint mit Beschreibung, wer was wann geändert hat.', ex: '"git commit -m \'Fix typo in abstract\'"' },
+  { cat: 'github', word: 'Branch', def: 'Ein paralleler Entwicklungsstrang – du arbeitest isoliert, ohne die Hauptversion zu gefährden, und mergst später.', ex: '„Erstelle Branch \'feature/export-pdf\' für die neue Funktion.“' },
+  { cat: 'github', word: 'Main / Master', def: 'Der Haupt-Branch eines Repos – die „offizielle“ Version. Früher „master“, heute meist „main“.', ex: '„Merge nur getesteten Code in main.“' },
+  { cat: 'github', word: 'Merge', def: 'Das Zusammenführen von zwei Branches – Änderungen aus einem Branch fließen in einen anderen (meist main).', ex: '„Nach dem Code Review: Branch in main mergen.“' },
+  { cat: 'github', word: 'Pull Request (PR)', def: 'Ein Vorschlag, Änderungen zu mergen – andere können kommentieren, reviewen und genehmigen, bevor der Merge passiert.', ex: '„PR erstellen → Review anfordern → Approve → Merge.“' },
+  { cat: 'github', word: 'Fork', def: 'Eine persönliche Kopie eines fremden Repos – du kannst unabhängig arbeiten und später Änderungen zurückvorschlagen.', ex: '„Forke das Repo, mach Änderungen, erstelle dann einen PR.“' },
+  { cat: 'github', word: 'Clone', def: 'Eine lokale Kopie eines Remote-Repos auf deinen Computer herunterladen.', ex: '"git clone https://github.com/jakobklemm/destatis.git"' },
+  { cat: 'github', word: 'Push', def: 'Lokale Commits auf GitHub (Remote) hochladen – macht deine Änderungen für andere sichtbar.', ex: '"git push origin main"' },
+  { cat: 'github', word: 'Pull', def: 'Neueste Änderungen vom Remote-Repo herunterladen und mit deiner lokalen Version zusammenführen.', ex: '„git pull – immer zuerst pullen, bevor du anfängst zu arbeiten.“' },
+  { cat: 'github', word: 'Fetch', def: 'Wie pull, aber ohne automatisches Mergen – du schaust erst, was sich geändert hat, bevor du entscheidest.', ex: '„git fetch → git diff origin/main → dann pull oder merge.“' },
+  { cat: 'github', word: 'Merge Conflict', def: 'Wenn zwei Personen dieselbe Stelle in einer Datei unterschiedlich geändert haben – muss manuell aufgelöst werden.', ex: '„Merge Conflict in do-file Zeile 42 – welche Version ist korrekt?“' },
+  { cat: 'github', word: 'README.md', def: 'Die Startseite eines Repos – erklärt, was das Projekt macht, wie man es nutzt und wie man beiträgt.', ex: '„Ein gutes README ist die halbe Dokumentation.“' },
+  { cat: 'github', word: 'Issue', def: 'Ein Eintrag für Bug-Reports, Feature-Requests oder Aufgaben – GitHub\'s integriertes Ticketsystem.', ex: '„Issue #7: CSV-Import schlägt fehl bei Sonderzeichen.“' },
+  { cat: 'github', word: '.gitignore', def: 'Eine Datei, die festlegt, welche Dateien Git ignorieren soll – z.B. Rohdaten, Passwörter, temporäre Systemdateien.', ex: '„*.dta und /data/ in .gitignore – Rohdaten nie hochladen.“' },
+  { cat: 'github', word: 'GitHub Actions', def: 'Automatisierung direkt in GitHub – z.B. Tests automatisch laufen lassen wenn jemand committed.', ex: '„Action: bei jedem Push automatisch Stata do-file testen.“' },
+  { cat: 'github', word: 'Tag / Release', def: 'Eine benannte Version eines Commits – z.B. „v1.0“ für die finale Einreichung eines Manuskripts.', ex: '„Release v1.0 = Version die an Journal of Urology eingereicht wurde.“' },
+  { cat: 'github', word: 'Stash', def: 'Änderungen temporär „weglegen“ ohne zu committen – nützlich wenn man schnell den Branch wechseln muss.', ex: '„git stash → Branch wechseln → git stash pop“' },
+  { cat: 'github', word: 'Origin', def: 'Der Standard-Name für das Remote-Repo – also das Repo auf GitHub, von dem geclont wurde.', ex: '„git push origin main = hochladen auf GitHub.“' },
+  { cat: 'github', word: 'Diff', def: 'Die Ansicht der Unterschiede zwischen zwei Versionen einer Datei – hinzugefügte Zeilen grün, entfernte rot.', ex: '„git diff zeigt genau, was du seit dem letzten Commit geändert hast.“' },
 ];
 
 let filtered = [...vocab];
@@ -489,12 +489,14 @@ let currentCat = 'all';
 function setCategory(cat) {
   currentCat = cat;
   filtered = cat === 'all' ? [...vocab] : vocab.filter(v => v.cat === cat);
+  // shuffle
   for (let i = filtered.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
   }
   currentIndex = 0;
   document.getElementById('card').classList.remove('flipped');
+  // update tabs
   document.querySelectorAll('.tab').forEach(t => t.className = 'tab');
   const tabMap = { all: 'active-all', startup: 'active-startup', github: 'active-github', web: 'active-web' };
   event.target.className = 'tab ' + tabMap[cat];
@@ -521,6 +523,7 @@ function renderCard() {
   document.getElementById('back-ex').textContent = v.ex;
   document.getElementById('card-counter').textContent = `Karte ${currentIndex + 1}/${filtered.length}`;
 
+  // controls
   document.getElementById('controls').style.display = 'flex';
   document.getElementById('card').style.display = 'block';
 }
@@ -538,6 +541,7 @@ function restartDeck() {
   document.getElementById('card').innerHTML = `<div class="card-inner" id="card-inner"><div class="card-face card-front" id="front"><div class="card-category" id="front-cat"></div><div class="card-word" id="front-word"></div><div class="card-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2H3v16h5l4 4 4-4h5V2z"/></svg>antippen zum Aufdecken</div></div><div class="card-face card-back" id="back"><div class="card-category" id="back-cat"></div><div class="card-definition" id="back-def"></div><div class="card-example" id="back-ex"></div></div></div>`;
   document.getElementById('card').onclick = flipCard;
   currentIndex = 0;
+  // shuffle
   for (let i = filtered.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
@@ -585,6 +589,7 @@ function renderWordGrid() {
 function jumpTo(word) {
   const idx = filtered.findIndex(v => v.word === word);
   if (idx === -1) {
+    // word not in current filter, switch to all
     setCategory('all');
     document.querySelectorAll('.tab').forEach((t, i) => { if(i===0) t.className='tab active-all'; else t.className='tab'; });
     setTimeout(() => jumpTo(word), 50);
